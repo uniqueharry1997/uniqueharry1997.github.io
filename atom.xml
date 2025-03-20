@@ -2,14 +2,97 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://uniqueharry1997.github.io</id>
     <title>Harry&apos;s Blog</title>
-    <updated>2024-08-15T02:09:41.532Z</updated>
+    <updated>2025-03-20T13:20:21.332Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://uniqueharry1997.github.io"/>
     <link rel="self" href="https://uniqueharry1997.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://uniqueharry1997.github.io/images/avatar.png</logo>
     <icon>https://uniqueharry1997.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2024, Harry&apos;s Blog</rights>
+    <rights>All rights reserved 2025, Harry&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[code]]></title>
+        <id>https://uniqueharry1997.github.io/post/code/</id>
+        <link href="https://uniqueharry1997.github.io/post/code/">
+        </link>
+        <updated>2025-03-20T13:19:21.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-python">import pyodbc
+
+# 数据库连接字符串
+conn_str = (
+    r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};'
+    r'DBQ=.\jiaoxueguanli.accdb;'  # 你的数据库文件地址，这里为本目录下
+)
+
+try:
+    # 连接数据库
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    # SQL查询语句
+    SQL_value = '''
+        SELECT 
+            student.姓名, 
+            courseChoose.学期, 
+            course.课程名称, 
+            course.课程号, 
+            courseChoose.分数, 
+            teacher.姓名, 
+            class.班级名称, 
+            class.所属院系 
+        FROM 
+            student 
+            INNER JOIN courseChoose ON student.学号 = courseChoose.学号 
+            INNER JOIN course ON courseChoose.课程号 = course.课程号 
+            INNER JOIN class ON student.班级编号 = class.班级编号 
+            INNER JOIN teacher ON course.教师编号 = teacher.教师编号 
+    '''
+
+    # 执行查询
+    cursor.execute(SQL_value)
+
+    # 获取查询结果
+    result = cursor.fetchall()
+
+    # 输出查询结果
+    for row in result:
+        for i in range(8):
+            print(row[i], &quot;  &quot;, end=&quot;&quot;)
+        print()
+
+except pyodbc.Error as e:
+    print(f&quot;数据库操作出错：{e}&quot;)
+
+finally:
+    # 关闭游标和连接
+    if 'cursor' in locals():
+        cursor.close()
+    if 'conn' in locals():
+        conn.close()</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Premiere Pro 学习]]></title>
+        <id>https://uniqueharry1997.github.io/post/premiere-pro-xue-xi/</id>
+        <link href="https://uniqueharry1997.github.io/post/premiere-pro-xue-xi/">
+        </link>
+        <updated>2025-01-10T12:27:20.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="textsection-1"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Section</mtext></mrow><annotation encoding="application/x-tex">\text{Section}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Section</span></span></span></span></span> 1</h3>
+<p>视频编码 MP4 -&gt; H.264<br>
+缩放为帧大小：填满画面<br>
+C键：剃刀工具<br>
+蒙太奇：不连贯的镜头组合使观众产生联想</p>
+<h3 id="textsection-2"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Section</mtext></mrow><annotation encoding="application/x-tex">\text{Section}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Section</span></span></span></span></span> 2</h3>
+<p>“组件”：选择“源”：用I、O选择一段素材截取的部分。<br>
+速度/持续时间：400% -&gt; 4倍<br>
+M：标记点<br>
+Shift M：下一个标记点  Ctrl Shift M：上一个标记点<br>
+素材自带音频：可取消链接，单独处理<br>
+alt + delete：删除音频<br>
+波纹删除：删除空白处<br>
+完整 -&gt; 1/2,1/4,1/8（降低帧率以流畅预览）</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[四级词汇 中 -> 英]]></title>
         <id>https://uniqueharry1997.github.io/post/si-ji-ci-hui-zhong-greater-ying/</id>
@@ -130,6 +213,13 @@ n. 候选人，申请人<br>
 adj. 成荫的，多荫的；可疑的，靠不住的<br>
 v. 赶快，急忙；加速；催促<br>
 adj. 富有成效的；硕果累累的；多产的</p>
+<h3 id="830">8.30</h3>
+<p>v. 使受伤致残；使跛；严重削弱<br>
+n. 先令<br>
+n. （动物）项圈；衣领</p>
+<h3 id="92">9.2</h3>
+<p>n. 坐标轴；轴；中心线<br>
+n. 外表；外貌，外观</p>
 ]]></content>
     </entry>
     <entry>
@@ -252,6 +342,13 @@ candidate<br>
 shady<br>
 hasten<br>
 fruitful</p>
+<h3 id="830">8.30</h3>
+<p>cripple<br>
+shilling<br>
+collar</p>
+<h3 id="92">9.2</h3>
+<p>axis<br>
+exterior</p>
 ]]></content>
     </entry>
     <entry>
@@ -376,6 +473,13 @@ candidate   n. 候选人，申请人<br>
 shady   adj. 成荫的，多荫的；可疑的，靠不住的<br>
 hasten   v. 赶快，急忙；加速；催促<br>
 fruitful   adj. 富有成效的；硕果累累的；多产的</p>
+<h3 id="830">8.30</h3>
+<p>cripple   v. 使受伤致残；使跛；严重削弱<br>
+shilling   n. 先令<br>
+collar   n. （动物）项圈；衣领</p>
+<h3 id="92">9.2</h3>
+<p>axis   n. 坐标轴；轴；中心线<br>
+exterior   n. 外表；外貌，外观</p>
 ]]></content>
     </entry>
     <entry>

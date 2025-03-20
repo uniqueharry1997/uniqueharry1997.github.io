@@ -2,23 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Harry&#39;s Blog</title>
+<title>code | Harry&#39;s Blog</title>
 <link rel="shortcut icon" href="https://uniqueharry1997.github.io/favicon.ico?v=1742476813007">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://uniqueharry1997.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Harry&#39;s Blog - Atom Feed" href="https://uniqueharry1997.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="code | Harry&#39;s Blog - Atom Feed" href="https://uniqueharry1997.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="import pyodbc
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+# 数据库连接字符串
+conn_str = (
+    r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};'
+    r'DBQ=.\jiaoxueguan..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,46 +79,91 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              code
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2025-03-20
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <pre><code class="language-python">import pyodbc
+
+# 数据库连接字符串
+conn_str = (
+    r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};'
+    r'DBQ=.\jiaoxueguanli.accdb;'  # 你的数据库文件地址，这里为本目录下
+)
+
+try:
+    # 连接数据库
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    # SQL查询语句
+    SQL_value = '''
+        SELECT 
+            student.姓名, 
+            courseChoose.学期, 
+            course.课程名称, 
+            course.课程号, 
+            courseChoose.分数, 
+            teacher.姓名, 
+            class.班级名称, 
+            class.所属院系 
+        FROM 
+            student 
+            INNER JOIN courseChoose ON student.学号 = courseChoose.学号 
+            INNER JOIN course ON courseChoose.课程号 = course.课程号 
+            INNER JOIN class ON student.班级编号 = class.班级编号 
+            INNER JOIN teacher ON course.教师编号 = teacher.教师编号 
+    '''
+
+    # 执行查询
+    cursor.execute(SQL_value)
+
+    # 获取查询结果
+    result = cursor.fetchall()
+
+    # 输出查询结果
+    for row in result:
+        for i in range(8):
+            print(row[i], &quot;  &quot;, end=&quot;&quot;)
+        print()
+
+except pyodbc.Error as e:
+    print(f&quot;数据库操作出错：{e}&quot;)
+
+finally:
+    # 关闭游标和连接
+    if 'cursor' in locals():
+        cursor.close()
+    if 'conn' in locals():
+        conn.close()</code></pre>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://uniqueharry1997.github.io/post/premiere-pro-xue-xi/">
+              <h3 class="post-title">
+                Premiere Pro 学习
+              </h3>
+            </a>
+          </div>
         
 
         
